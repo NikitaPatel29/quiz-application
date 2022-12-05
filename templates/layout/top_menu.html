@@ -1,0 +1,67 @@
+{% load static %}
+
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a href="{% url 'quiz_home' %}" class="navbar-brand">
+            <img src="{% static 'img/logo.png' %}" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">Quiz Application</span>
+        </a>
+        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button"><em class="fas fa-bars"></em></a>
+                </li>
+                <li class="nav-item mr-2 ml-2">
+                    <a href="{% url 'quiz_home' %}" class="nav-link">Home</a>
+                </li>
+                {% if request.user.is_superuser %}
+                    <li class="nav-item mr-2 ml-2">
+                        <a href="{% url 'all_category' %}" class="nav-link">Add Category</a>
+                    </li>
+                    <li class="nav-item mr-2 ml-2">
+                        <a href="{% url 'all_question' %}" class="nav-link">Add Questions</a>
+                    </li>
+                {% endif %}
+                <!-- <li class="nav-item mr-2 ml-2">
+                    <a href="{% url 'quiz_category' %}" class="nav-link">Quiz</a>
+                </li> -->
+                <li class="nav-item mr-2 ml-2">
+                    <a href="{% url 'quiz_history' %}" class="nav-link">History</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                {% comment %} <i class="fa fa-user-circle" aria-hidden="true"></i> {% endcomment %}
+                <img src="{% static 'img/default-user-image.png' %}" class="img-circle" alt="" style="width:30px; height:30px;">
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                <div class="dropdown-item">
+                    <div class="media">
+                        <img src="{% static 'img/default-user-image.png' %}" class="img-size-50 mr-3 img-circle" alt="">
+                        <div class="media-body">
+                            {% if request.user.first_name == '' %}
+                                <span class="">{{ request.user.username|title }}</span><br/>
+                            {% else %}
+                                <span class="">{{ request.user.first_name|title }} {{ request.user.last_name|title }}</span><br/>
+                            {% endif %}
+                            <small>{{ request.user.username }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'user_profile' %}" class="dropdown-item">Profile</a>
+                <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
+                <a href="{% url 'user_logout' %}" class="dropdown-item">
+                    <em class="fas fa-right-from-bracket"></em>
+                    Log Out
+                </a>
+                <div class="dropdown-divider"></div>
+            </div>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Category | Quiz Application {% endblock title %}
+{% block content %}
+<div class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Add New Category</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container">
+        <div class="card card-primary">
+            <div class="card-body">
+                <p class="login-box-msg">
+                    <small class="text-danger">{{ error_message }}</small>
+                </p>
+                <form action="{% url 'add_category' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group py-3">
+                        <label for="inputTitle">Category Title</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group py-3">
+                        <div class="custom-file">
+                            <label for="inputImage">Category Image</label><br/>
+                            {{ form.image }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

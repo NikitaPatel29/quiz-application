@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Category | Quiz Application {% endblock title %}
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>All Quiz Category</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if category_data|length > 0 %}
+    <section class="content">
+        <div class="card card-solid">
+            <div class="card-body pb-0">
+                <div class="row">
+                    {% for category in category_data %}
+                    <div class="col-lg-3 col-6 flex-column">
+                        <div class="card bg-light d-flex flex-fill">
+                            <div class="card-header">
+                                {{ category.title }}
+                            </div>
+                            <div class="card-body pt-3 text-center">
+                                <img src="{{ category.image.url }}" alt="{{ category.title }}" class="img-fluid" style="height:200px;width:200px;">
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary btn-block" href="{% url 'start_quiz' category.slug %}">
+                                    <em class="fa fa-play mr-3"></em>
+                                    Start Quiz
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <section class="content py-5">
+        <div class="card card-shadow py-5">
+            <h1 class="text-center text-muted py-5">No quiz available, contact administration to add one !!!</h1>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock content %}

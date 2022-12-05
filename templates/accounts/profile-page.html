@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home | Quiz Application {% endblock title %}
+{% block content %}
+<div class="content-header">
+    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile pb-5">
+                    <div class="row">
+                        <div class="col-md-3 pr-0">
+                            <img class="rounded img-thumbnail" 
+                                    src="{% static 'img/default-user-image.png' %}" alt="profile" 
+                                    style="height: 200px; width: auto;">
+                        </div>
+                        <div class="col-md-9">
+                            {% if request.user.first_name %}
+                                <h3 class="profile-username" style="font-size: 30px;">
+                                    {{ request.user.first_name|title }} {{ request.user.last_name|title }}
+                                </h3>
+                            {% else %}
+                                <h3 class="profile-username" style="font-size: 30px;">
+                                    {{ request.user.username|title }}
+                                </h3>
+                            {% endif %}
+                            
+                            <p class="text-muted">{{ request.user.email }}</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-info"><em class="fa fa-flag"></em></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number pl-3">Attempts : {{ total_quiz_attempt|default_if_none:0 }}</span>
+                                            <span class="info-box-text pl-3">&nbsp;</span>
+                                            <span class="info-box-text pl-3"><strong>Quiz Attempt<small>(s)</small></strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-info"><em class="fa fa-arrow-up"></em></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number pl-3 tex">score : {{ highest_score.score|floatformat:0|default:0  }}</span>
+                                            {% if highest_score.category %}
+                                                <span class="info-box-text pl-3">{{ highest_score.category }}</span>
+                                            {% else %}
+                                                <span class="info-box-text pl-3">&nbsp;</span>
+                                            {% endif %}
+                                            <span class="info-box-text pl-3"><strong>Highest Score</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-info"><em class="fa fa-check-circle"></em></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number pl-3">score : {{ last_attempt.score|floatformat:0|default:0 }}</span>
+                                            {% if last_attempt.category %}
+                                                <span class="info-box-text pl-3">{{ last_attempt.category }}</span>
+                                            {% else %}
+                                                <span class="info-box-text pl-3">&nbsp;</span>
+                                            {% endif %}
+                                            <span class="info-box-text pl-3"><strong>Last Attempt</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header box-profile py-3">
+                    <h2 class="text-primary">Top 10 Achievements</h2>
+                </div>
+                <div class="card-body box-profile pt-5">
+                    {% if achievement|length > 0 %}
+                        <div class="row">
+                            {% for data in achievement %}
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <span class="info-box-icon">
+                                            <img src="{{ data.category.image.url }}" alt="{{ category.title }}" class="img-fluid" style="height:60px;width:60px;">
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text pl-3"><strong>{{ data.category }}</strong></span>
+                                            <span class="info-box-number pl-3">score - {{ data.score|floatformat:0 }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="row py-5 text-center">
+                            <div class="col-md-12 py-5">
+                                <h4 class="text-muted">Attempt Quiz for more information.</h4>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}

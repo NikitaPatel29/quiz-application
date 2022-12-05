@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %} {% endblock title %}</title>
+
+        {% include 'layout/header.html' %}
+
+        {% block css %}
+        {% endblock css %}
+
+    </head>
+    <body class="layout-top-nav sidebar-collapse">
+        <div class="wrapper">
+
+            {% include 'layout/top_menu.html' %}
+
+            {% include 'layout/side_menu.html' %}
+
+            <div class="container-fluid">
+                <div class="content-wrapper">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+                
+            </div>
+            {% include 'layout/footer.html' %}
+            {% block js %}
+            {% endblock js %}
+        </div>
+    </body>
+</html>

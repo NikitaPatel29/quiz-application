@@ -1,0 +1,12 @@
+# AWS Configutation
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
+
+# Email configuration
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+# Facebook configuration
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''

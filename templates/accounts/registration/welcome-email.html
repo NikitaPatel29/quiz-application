@@ -1,0 +1,19 @@
+{% autoescape off %}
+Hello {{ name|title }},
+
+Your login details are as follows:
+
+Username : {{ username }}
+Email : {{ email }}
+
+To Explore the unlimited learning opportunities click on link below:
+
+{{ request.scheme }}://{{ request.get_host }}{% url 'login' %}
+
+We hope we can help you in achieving your career goals and that you level up your skills!
+
+Thanks for using Quiz Application.
+
+Sincerely,
+The Quiz Application Team
+{% endautoescape %}

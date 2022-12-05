@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} Home | Quiz Application {% endblock title %}
+{% block content %}
+<div class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                {% if request.user.first_name %}
+                    <h2 class="text-center text-info">Welcome {{ request.user.first_name|title }},</h2>
+                {% else %}
+                    <h2 class="text-center text-info">Welcome {{ request.user.username|title }},</h2>
+                {% endif %}
+                <h3 class="m-0 text-center">Before you play the quiz, here are the rules</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card border-info shadow">
+        <div class="card-header">&nbsp;</div>
+        <div class="card-body text-info py-3">
+            <h4 class="card-title">Rules :</h4>
+            <p class="card-text">
+                <ul style="list-style:decimal;">
+                    <li>All questions are multiple choice question.</li>
+                    <li><span class="text-danger">Only one choice is correct.</span></li>
+                    <li>Every question is displayed only once.</li>
+                    <li>Try to answer as quickly as you can.</li>
+                    <li>If you press refresh or go back to the previous page, there will be a new question for you and the question you were on will be counted as attempted.</li>
+                    <li>Questions are displayed randomly for every user.</li>
+                </ul>
+            </p>
+            
+        </div>
+        <div class="card-footer">
+            <span class="d-flex justify-content-center">
+                <a href="{% url 'quiz_category' %}" class="btn btn-info p-2">Let's play</a>
+            </span>
+        </div> 
+    </div>
+</div>
+{% endblock content %}

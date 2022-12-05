@@ -1,0 +1,86 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if title %} 
+            {{ title }} 
+        {%else%} 
+            Welcome | Quiz Application 
+        {%endif%}
+    </title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
+</head>
+
+<body class="login-page bg-image" style="min-height: 466px; background-image: url({% static 'img/login_backgroup_image.jpg' %}); background-repeat: no-repeat;
+background-size : cover;">
+    <!-- Login Div-->
+    <div class="" style="padding: 10% 20% 0 0">
+
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <h1><strong>Quiz Application</strong></h1>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">
+                    <small class="text-danger">{{ error_message }}</small>
+                </p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-4">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-warning btn-block">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="social-auth-links text-center my-4">
+                    <a href="{% provider_login_url 'google' %}" class="btn btn-block btn-danger">
+                        <em class="fab fa-google mr-2"></em> Sign in using Google
+                    </a>
+                    <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-block btn-primary">
+                        <em class="fab fa-facebook mr-2"></em> Sign in using Facebook
+                    </a>
+                </div>
+                <p class="mb-1">
+                    <a href="{% url 'password_reset' %}">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="{% url 'user-register' %}" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+</body>
+
+</html>
